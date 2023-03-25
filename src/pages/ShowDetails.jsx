@@ -17,15 +17,37 @@ const ShowDetails = () => {
       })
   }, [])
   return (
-    <div>
-      <h1>{show?.name}</h1>
-      <div>
-        <div>
-          <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='' />
+    <>
+      <div className='container-md'>
+        <h1>{show?.name}</h1>
+        <div className='d-flex'>
+          <div>
+            <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='' />
+          </div>
+          <div className='px-3 py-1'>
+            <p>
+              {show?.summary}
+            </p>
+          </div>
+          <div>
+            <h3>Show Info</h3>
+            <div>
+              <p>
+                {show?.network
+                  ? (<><b>Network: </b>{show?.network.name}</>)
+                  : (<><b>Web Channel: </b>{show?.webChannel.name}</>)}
+              </p>
+            </div>
+          </div>
         </div>
-        {show?.summary}
+        <div>
+          Episodes
+        </div>
+        <div>
+          Actors
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -31,9 +31,9 @@ const Home = () => {
 
   return (
     <>
-      <div className='container'>
+      <div className='container-lg d-flex flex-column align-items-center'>
         <h1>Series Finder</h1>
-        <form className='form-inline my-2 my-lg-0 w-75'>
+        <form className='form-inline my-2 my-lg-0 w-75 d-flex mb-4'>
           <input
             type='text'
             className='form-control'
@@ -45,15 +45,17 @@ const Home = () => {
           />
           <button className='btn btn-block btn-primary' onClick={onSearchHandle}>Search</button>
         </form>
-        <div className='row'>
+        <div className='row d-flex justify-content-center'>
           {series.map(show => (
-            <Link to={`/shows/${show.show.id}`} className='card' style={{ width: '18rem' }} key={show.show.id}>
-              <img src={show.show.image ? show.show.image.medium : ImageNotAvailable} className='card-img-top' alt='...' />
-              <div className='card-body'>
+            <Link to={`/shows/${show.show.id}`} className='card m-1' style={{ width: '18rem' }} key={show.show.id}>
+              <div className='px-2 py-4'>
+                <img src={show.show.image ? show.show.image.medium : ImageNotAvailable} className='card-img-top' alt='...' />
+              </div>
+              <div className='card-body text-center'>
                 <h5 className='card-title'>{show.show.name}</h5>
                 {/* <p className='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
               </div>
-              <ul className='list-group list-group-flush'>
+              <ul className='list-group list-group-flush text-center'>
                 <li className='list-group-item'>{show.show.rating.average}</li>
                 {/* <li className='list-group-item'>A second item</li>
                 <li className='list-group-item'>A third item</li> */}
