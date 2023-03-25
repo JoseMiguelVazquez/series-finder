@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ImageNotAvailable from '../assets/Image-Not-Available.png'
 
 const Home = () => {
@@ -46,7 +47,7 @@ const Home = () => {
         </form>
         <div className='row'>
           {series.map(show => (
-            <div className='card' style={{ width: '18rem' }} key={show.show.id}>
+            <Link to={`/shows/${show.show.id}`} className='card' style={{ width: '18rem' }} key={show.show.id}>
               <img src={show.show.image ? show.show.image.medium : ImageNotAvailable} className='card-img-top' alt='...' />
               <div className='card-body'>
                 <h5 className='card-title'>{show.show.name}</h5>
@@ -61,7 +62,7 @@ const Home = () => {
                 <a href='#' className='card-link'>Card link</a>
                 <a href='#' className='card-link'>Another link</a>
               </div> */}
-            </div>
+            </Link>
           ))}
         </div>
       </div>
