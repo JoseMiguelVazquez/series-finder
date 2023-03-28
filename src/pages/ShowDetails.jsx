@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import ImageNotAvailable from '../assets/Image-Not-Available.png'
 import Loading from '../components/Loading'
 
@@ -26,7 +26,7 @@ const ShowDetails = () => {
     fetch(`https://api.tvmaze.com/shows/${id}/episodes`)
       .then(response => response.json())
       .then(data => {
-        setEpisodes(data)
+        setEpisodes(data.slice(0, 5))
       }).catch(error => {
         console.log(error)
       })
@@ -120,25 +120,11 @@ const ShowDetails = () => {
               ))}
             </tbody>
           </table>
+          <Link to={`/shows/${show?.id}/episodes`} className='btn btn-dark'>Full Episode List</Link>
         </div>
         <div>
           <h2>Cast</h2>
           <div className='row d-flex flex-wrap'>
-            {/* {cast.map((member, id) => (
-              <div className='card mb-3' key={member?.person.id + id.toString()}>
-                <div className='row g-0'>
-                  <div className='col-md-4'>
-                    <img src={member?.person.image ? member?.person.image.medium : ImageNotAvailable} alt={member?.person.name} />
-                  </div>
-                  <div className='col-md-8'>
-                    <div className='card-body'>
-                      <h5 className='card-title'>{member.person.name}</h5>
-                      <p className='card-text'>Voices: {member?.character.name}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))} */}
             {cast.map((member, id) =>
               (<div className='d-flex col-12 col-sm-6 col-lg-3 my-2' key={member?.person.id + id.toString()}>
                 <div className='col-5'>
