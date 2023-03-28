@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ImageNotAvailable from '../assets/Image-Not-Available.png'
 import Loading from '../components/Loading'
+import striptags from 'striptags'
 
 const ShowDetails = () => {
   const [show, setShow] = useState(null)
@@ -58,7 +59,7 @@ const ShowDetails = () => {
           </div>
           <div className='px-3 py-1'>
             <p>
-              {show?.summary}
+              {striptags(show?.summary)}
             </p>
           </div>
           <div>
