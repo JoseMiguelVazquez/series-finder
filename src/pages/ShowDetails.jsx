@@ -124,12 +124,31 @@ const ShowDetails = () => {
         <div>
           <h2>Cast</h2>
           <div className='row d-flex flex-wrap'>
-            {cast.map((member, id) =>
-              (<div className='d-flex col' key={member?.person.id + id.toString()}>
-                <div>
-                  <img src={member?.person.image ? member?.person.image.medium : ImageNotAvailable} alt={member?.person.name} />
+            {/* {cast.map((member, id) => (
+              <div className='card mb-3' key={member?.person.id + id.toString()}>
+                <div className='row g-0'>
+                  <div className='col-md-4'>
+                    <img src={member?.person.image ? member?.person.image.medium : ImageNotAvailable} alt={member?.person.name} />
+                  </div>
+                  <div className='col-md-8'>
+                    <div className='card-body'>
+                      <h5 className='card-title'>{member.person.name}</h5>
+                      <p className='card-text'>Voices: {member?.character.name}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className='px-3 py-1'>
+              </div>
+            ))} */}
+            {cast.map((member, id) =>
+              (<div className='d-flex col-12 col-sm-6 col-lg-3 my-2' key={member?.person.id + id.toString()}>
+                <div className='col-5'>
+                  <img
+                    className='img-fluid'
+                    src={member?.person.image ? member?.person.image.medium : ImageNotAvailable}
+                    alt={member?.person.name}
+                  />
+                </div>
+                <div className='px-3 py-1 col-6'>
                   <h4>{member.person.name}</h4>
                   <p>Voices: {member?.character.name}</p>
                 </div>

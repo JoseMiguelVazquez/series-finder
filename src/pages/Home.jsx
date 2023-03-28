@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ImageNotAvailable from '../assets/Image-Not-Available.png'
 import Loading from '../components/Loading'
+import Pagination from '../components/Pagination'
 
 const Home = () => {
   const [series, setSeries] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(true)
-
-  const filteredSeries = () => {
-    return series.slice(0, 10)
-  }
+  const [currentPage, setCurrentPage] = useState(1)
+  const showsPerPage = 10
 
   useEffect(() => {
     fetch('https://api.tvmaze.com/shows?page=0')
       .then(response => response.json())
       .then(data => {
         // console.log(data)
-        setSeries(data)
+        setSeries(data.slice(0, 100))
         setLoading(false)
       }).catch(error => {
         console.log(error)
@@ -43,6 +42,10 @@ const Home = () => {
     )
   }
 
+  const lastShowIndex = currentPage * showsPerPage
+  const firstShowIndex = lastShowIndex - showsPerPage
+  const currentSeries = series.slice(firstShowIndex, lastShowIndex)
+
   return (
     <>
       <div className='container-lg d-flex flex-column align-items-center'>
@@ -60,7 +63,7 @@ const Home = () => {
           <button className='btn btn-block btn-primary' onClick={onSearchHandle}>Search</button>
         </form>
         <div className='row d-flex justify-content-center'>
-          {filteredSeries().map((show, id) => (
+          {currentSeries.map((show, id) => (
             <Link to={`/shows/${show?.id}`} className='card m-1' style={{ width: '18rem' }} key={show.id + id.toString()}>
               <div className='px-2 py-4'>
                 <img src={show?.image ? show.image.medium : ImageNotAvailable} className='card-img-top' alt='...' />
@@ -81,6 +84,14 @@ const Home = () => {
             </Link>
           ))}
         </div>
+      </div>
+      <div>
+        <Pagination
+          totalShows={series.length}
+          showsPerPage={showsPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
       </div>
     </>
   )
