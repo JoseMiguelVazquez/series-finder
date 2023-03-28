@@ -26,7 +26,7 @@ const ShowDetails = () => {
     fetch(`https://api.tvmaze.com/shows/${id}/episodes`)
       .then(response => response.json())
       .then(data => {
-        setEpisodes(data.slice(0, 5))
+        setEpisodes(data)
       }).catch(error => {
         console.log(error)
       })
@@ -91,7 +91,7 @@ const ShowDetails = () => {
                   {/* eslint-disable-next-line react/jsx-indent */}
                    </>)}
               </p>
-              <p><b>Episodes: </b><a href='#episodes-section'>{episodes.length}</a></p>
+              <p><b>Episodes: </b><Link to={`/shows/${show?.id}/episodes`}>{episodes.length}</Link></p>
               <p>
                 {show?.rating.average
                   ? (<><b>Rating: </b>{show?.rating.average}</>)
@@ -111,7 +111,7 @@ const ShowDetails = () => {
               </tr>
             </thead>
             <tbody>
-              {episodes.map((episode, id) => (
+              {episodes.slice(0, 5).map((episode, id) => (
                 <tr key={episode.id + id.toString()}>
                   <td>{episode.name}</td>
                   <td>{episode.airdate}</td>
