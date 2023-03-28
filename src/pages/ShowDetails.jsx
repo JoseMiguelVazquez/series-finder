@@ -79,15 +79,20 @@ const ShowDetails = () => {
                     : show?.genres.map((element, i, array) => (
                       i < array.length - 1 ? `${element} | ` : `${element}`
                     ))}
-                </>)}
+                   </>)}
               </p>
               <p><b>Episodes: </b><a href='#episodes-section'>{episodes.length}</a></p>
+              <p>
+                {show?.rating.average
+                  ? (<><b>Rating: </b>{show?.rating.average}</>)
+                  : (<></>)}
+              </p>
             </div>
           </div>
         </div>
         <div id='episodes-section'>
           <h2>Episodes</h2>
-          <table>
+          <table className='table table-striped'>
             <thead>
               <tr>
                 <th>Episode Name</th>
