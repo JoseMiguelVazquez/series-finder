@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ImageNotAvailable from '../assets/Image-Not-Available.png'
+import Loading from '../components/Loading'
 
 const ShowDetails = () => {
   const [show, setShow] = useState(null)
   const [episodes, setEpisodes] = useState([])
   const [cast, setCast] = useState([])
+  const [loading, setLoading] = useState(true)
   // const id = useParams().id
   const { id } = useParams()
 
@@ -14,6 +16,7 @@ const ShowDetails = () => {
       .then(response => response.json())
       .then(data => {
         setShow(data)
+        setLoading(false)
       }).catch(error => {
         console.log(error)
       })
@@ -39,13 +42,19 @@ const ShowDetails = () => {
       })
   }, [])
 
+  if (loading) {
+    return (
+      <Loading />
+    )
+  }
+
   return (
     <>
       <div className='container-md'>
         <h1>{show?.name}</h1>
         <div className='d-flex'>
           <div>
-            <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='' />
+            <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='show poster' />
           </div>
           <div className='px-3 py-1'>
             <p>
@@ -79,6 +88,7 @@ const ShowDetails = () => {
                     : show?.genres.map((element, i, array) => (
                       i < array.length - 1 ? `${element} | ` : `${element}`
                     ))}
+                  {/* eslint-disable-next-line react/jsx-indent */}
                    </>)}
               </p>
               <p><b>Episodes: </b><a href='#episodes-section'>{episodes.length}</a></p>
@@ -101,8 +111,8 @@ const ShowDetails = () => {
               </tr>
             </thead>
             <tbody>
-              {episodes.map(episode => (
-                <tr key={episode.id}>
+              {episodes.map((episode, id) => (
+                <tr key={episode.id + id.toString()}>
                   <td>{episode.name}</td>
                   <td>{episode.airdate}</td>
                   <td>{episode.rating.average}</td>
@@ -113,12 +123,18 @@ const ShowDetails = () => {
         </div>
         <div>
           <h2>Cast</h2>
-          <div className='row'>
-            {cast.map(member => (
-              <div key={member.person.id}>
-                <h4>{member.person.name}</h4>
-              </div>
-            ))}
+          <div className='row d-flex flex-wrap'>
+            {cast.map((member, id) =>
+              (<div className='d-flex col' key={member?.person.id + id.toString()}>
+                <div>
+                  <img src={member?.person.image ? member?.person.image.medium : ImageNotAvailable} alt={member?.person.name} />
+                </div>
+                <div className='px-3 py-1'>
+                  <h4>{member.person.name}</h4>
+                  <p>Voices: {member?.character.name}</p>
+                </div>
+                {/* eslint-disable-next-line react/jsx-indent */}
+               </div>))}
           </div>
         </div>
       </div>
