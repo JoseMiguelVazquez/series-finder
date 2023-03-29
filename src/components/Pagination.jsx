@@ -8,7 +8,7 @@ const Pagination = ({ totalShows, showsPerPage, setCurrentPage, currentPage }) =
   }
 
   return (
-    <div className='btn-group' role='group'>
+    <div className='btn-group my-3' role='group'>
       {
         pages.map((page, index) => {
           return (

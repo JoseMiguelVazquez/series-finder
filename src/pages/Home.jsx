@@ -82,18 +82,11 @@ const Home = () => {
               </div>
               <div className='card-body text-center'>
                 <h5 className='card-title text-white'>{show.name}</h5>
-                {/* <p className='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
               </div>
               <div className='list-group list-group-flush text-center'>
                 <p className='list-group-item bg-dark text-white'><FontAwesomeIcon icon={faStar} />    {show.rating.average}
                 </p>
-                {/* <li className='list-group-item'>A second item</li>
-                <li className='list-group-item'>A third item</li> */}
               </div>
-              {/* <div className='card-body'>
-                <a href='#' className='card-link'>Card link</a>
-                <a href='#' className='card-link'>Another link</a>
-              </div> */}
             </Link>
           ))}
         </div>

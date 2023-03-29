@@ -49,10 +49,6 @@ const ShowDetails = () => {
     )
   }
 
-  const formatDate = (dateString) => {
-    console.log()
-  }
-
   return (
     <>
       <div className='container-lg'>
@@ -96,7 +92,14 @@ const ShowDetails = () => {
                   {/* eslint-disable-next-line react/jsx-indent */}
                    </>)}
               </p>
-              <p><b>Episodes: </b><Link className='link-dark' to={`/shows/${show?.id}/episodes`}>{episodes.length}</Link></p>
+              <p>
+                <b>Episodes: </b>
+                <Link
+                  className='link-dark'
+                  to={`/shows/${show?.id}/episodes`}
+                >{episodes.length}
+                </Link>
+              </p>
               <p>
                 {show?.rating.average
                   ? (<><b>Rating: </b>{show?.rating.average}</>)
@@ -125,7 +128,11 @@ const ShowDetails = () => {
               ))}
             </tbody>
           </table>
-          <Link to={`/shows/${show?.id}/episodes`} className='btn btn-dark'>Full Episode List</Link>
+          <Link
+            to={`/shows/${show?.id}/episodes`}
+            className='btn btn-dark'
+          >Full Episode List
+          </Link>
         </div>
         <div>
           <h2>Cast</h2>
