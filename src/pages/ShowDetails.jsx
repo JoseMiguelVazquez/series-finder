@@ -49,20 +49,24 @@ const ShowDetails = () => {
     )
   }
 
+  const formatDate = (dateString) => {
+    console.log()
+  }
+
   return (
     <>
       <div className='container-lg'>
         <h1 className='mb-4'>{show?.name}</h1>
-        <div className='d-flex row mb-5'>
-          <div className='d-flex justify-content-center col-12 col-sm-6 col-md-4 col-xl-3 mb-2'>
+        <div className='d-flex justify-content-center row mb-5 px-3'>
+          <div className='d-flex justify-content-center col-12 col-sm-5 col-md-4 col-xl-3 mb-3'>
             <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='show poster' />
           </div>
-          <div className='px-3 py-1 col-12 col-sm-6 col-md-5 col-xl-5'>
+          <div className='ps-2 pe-4 py-1 col-12 col-sm-7 col-md-5 col-xl-5 mb-3'>
             <p>
               {striptags(show?.summary)}
             </p>
           </div>
-          <div className='col-md-3 col-xl-4'>
+          <div className='card col-md-3 col-xl-4 p-2'>
             <h3>Show Info</h3>
             <div>
               <p>
@@ -92,7 +96,7 @@ const ShowDetails = () => {
                   {/* eslint-disable-next-line react/jsx-indent */}
                    </>)}
               </p>
-              <p><b>Episodes: </b><Link to={`/shows/${show?.id}/episodes`}>{episodes.length}</Link></p>
+              <p><b>Episodes: </b><Link className='link-dark' to={`/shows/${show?.id}/episodes`}>{episodes.length}</Link></p>
               <p>
                 {show?.rating.average
                   ? (<><b>Rating: </b>{show?.rating.average}</>)
@@ -101,7 +105,7 @@ const ShowDetails = () => {
             </div>
           </div>
         </div>
-        <div id='episodes-section'>
+        <div id='episodes-section' className='mb-5'>
           <h2>Episodes</h2>
           <table className='table table-striped'>
             <thead>
