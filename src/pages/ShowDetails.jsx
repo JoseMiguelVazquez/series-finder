@@ -51,18 +51,18 @@ const ShowDetails = () => {
 
   return (
     <>
-      <div className='container-md'>
-        <h1>{show?.name}</h1>
-        <div className='d-flex'>
-          <div>
+      <div className='container-lg'>
+        <h1 className='mb-4'>{show?.name}</h1>
+        <div className='d-flex row mb-5'>
+          <div className='d-flex justify-content-center col-12 col-sm-6 col-md-4 col-xl-3 mb-2'>
             <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='show poster' />
           </div>
-          <div className='px-3 py-1'>
+          <div className='px-3 py-1 col-12 col-sm-6 col-md-5 col-xl-5'>
             <p>
               {striptags(show?.summary)}
             </p>
           </div>
-          <div>
+          <div className='col-md-3 col-xl-4'>
             <h3>Show Info</h3>
             <div>
               <p>

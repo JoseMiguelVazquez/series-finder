@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import ImageNotAvailable from '../assets/Image-Not-Available.png'
 import Loading from '../components/Loading'
 import Pagination from '../components/Pagination'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
   const [series, setSeries] = useState([])
@@ -49,7 +51,7 @@ const Home = () => {
   return (
     <>
       <div className='container-lg d-flex flex-column align-items-center'>
-        <h1>Series Finder</h1>
+        <h1>TV Show Finder</h1>
         <form className='form-inline my-2 my-lg-0 w-75 d-flex mb-4'>
           <input
             type='text'
@@ -60,23 +62,34 @@ const Home = () => {
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
           />
-          <button className='btn btn-block btn-primary' onClick={onSearchHandle}>Search</button>
+          <button className='btn btn-block btn-dark' onClick={onSearchHandle}>Search</button>
         </form>
         <div className='row d-flex justify-content-center'>
           {currentSeries.map((show, id) => (
-            <Link to={`/shows/${show?.id}`} className='card m-1' style={{ width: '18rem' }} key={show.id + id.toString()}>
-              <div className='px-2 py-4'>
-                <img src={show?.image ? show.image.medium : ImageNotAvailable} className='card-img-top' alt='...' />
+            <Link
+              to={`/shows/${show?.id}`}
+              className='m-1 bg-dark px-0 link-light text-decoration-none'
+              style={{ width: '18rem' }}
+              key={show.id + id.toString()}
+            >
+              <div className='pb-4'>
+                <img
+                  src={show?.image ? show.image.medium : ImageNotAvailable}
+                  className='card-img-top'
+                  alt='...'
+                  style={{ 'min-height': '405px' }}
+                />
               </div>
               <div className='card-body text-center'>
-                <h5 className='card-title'>{show.name}</h5>
+                <h5 className='card-title text-white'>{show.name}</h5>
                 {/* <p className='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
               </div>
-              <ul className='list-group list-group-flush text-center'>
-                <li className='list-group-item'>{show.rating.average}</li>
+              <div className='list-group list-group-flush text-center'>
+                <p className='list-group-item bg-dark text-white'><FontAwesomeIcon icon={faStar} />    {show.rating.average}
+                </p>
                 {/* <li className='list-group-item'>A second item</li>
                 <li className='list-group-item'>A third item</li> */}
-              </ul>
+              </div>
               {/* <div className='card-body'>
                 <a href='#' className='card-link'>Card link</a>
                 <a href='#' className='card-link'>Another link</a>
@@ -85,7 +98,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div>
+      <div className='d-flex justify-content-center'>
         <Pagination
           totalShows={series.length}
           showsPerPage={showsPerPage}
