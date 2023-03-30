@@ -77,7 +77,7 @@ const Home = () => {
                   src={show?.image ? show.image.medium : ImageNotAvailable}
                   className='card-img-top'
                   alt='...'
-                  style={{ 'min-height': '405px' }}
+                  style={{ minHeight: '405px' }}
                 />
               </div>
               <div className='card-body text-center'>
