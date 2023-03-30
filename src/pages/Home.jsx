@@ -17,7 +17,6 @@ const Home = () => {
     fetch('https://api.tvmaze.com/shows?page=0')
       .then(response => response.json())
       .then(data => {
-        // console.log(data)
         setSeries(data.slice(0, 100))
         setLoading(false)
       }).catch(error => {
@@ -51,7 +50,7 @@ const Home = () => {
   return (
     <>
       <div className='container-lg d-flex flex-column align-items-center'>
-        <h1>TV Show Finder</h1>
+        <h1>Find Your TV Show!</h1>
         <form className='form-inline my-2 my-lg-0 w-75 d-flex mb-4'>
           <input
             type='text'

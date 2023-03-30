@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Loading from '../components/Loading'
 
 const EpisodesPage = () => {
@@ -49,9 +49,9 @@ const EpisodesPage = () => {
               </tr>
             </thead>
             <tbody>
-              {episodes.map((episode, id) => (
-                <tr key={episode.id + id.toString()}>
-                  <td>{episode.name}</td>
+              {episodes.map((episode, index) => (
+                <tr key={episode.id + index.toString()}>
+                  <td><Link className='link-dark' to={`/shows/${id}/episodes/${episode.season}/${episode.number}`}>{episode.name}</Link></td>
                   <td>{episode.airdate}</td>
                   <td>{episode.rating.average}</td>
                 </tr>

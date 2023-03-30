@@ -119,9 +119,9 @@ const ShowDetails = () => {
               </tr>
             </thead>
             <tbody>
-              {episodes.slice(0, 5).map((episode, id) => (
-                <tr key={episode.id + id.toString()}>
-                  <td>{episode.name}</td>
+              {episodes.slice(0, 5).map((episode, index) => (
+                <tr key={episode.id + index.toString()}>
+                  <td><Link className='link-dark' to={`/shows/${id}/episodes/${episode.season}/${episode.number}`}>{episode.name}</Link></td>
                   <td>{episode.airdate}</td>
                   <td>{episode.rating.average}</td>
                 </tr>

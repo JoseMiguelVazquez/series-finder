@@ -9,7 +9,7 @@ const Navbar = () => {
       <nav className='navbar navbar-expand-md bg-body-tertiary bg-dark navbar-dark mb-3'>
         <div className='container-fluid'>
           <NavLink className='navbar-brand text-white' to='#'>
-            <FontAwesomeIcon icon={faTv} /> TV
+            <FontAwesomeIcon icon={faTv} /> FIND TV
           </NavLink>
           <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
