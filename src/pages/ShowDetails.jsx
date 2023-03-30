@@ -55,7 +55,13 @@ const ShowDetails = () => {
         <h1 className='mb-4'>{show?.name}</h1>
         <div className='d-flex justify-content-center row mb-5 px-3'>
           <div className='d-flex justify-content-center col-12 col-sm-5 col-md-4 col-xl-3 mb-3'>
-            <img src={show?.image ? show?.image.medium : ImageNotAvailable} alt='show poster' />
+            <div className='row'>
+              <img
+                src={show?.image ? show?.image.medium : ImageNotAvailable}
+                alt='show poster'
+                style={{ maxHeight: 350 }}
+              />
+            </div>
           </div>
           <div className='ps-2 pe-4 py-1 col-12 col-sm-7 col-md-5 col-xl-5 mb-3'>
             <p>

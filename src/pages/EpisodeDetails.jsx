@@ -29,11 +29,13 @@ const EpisodeDetails = () => {
   return (
     <div className='container-md'>
       <h1>Chapter: {episode?.name}</h1>
-      <img
-        className='mb-3'
-        src={episode?.image ? episode?.image.medium : ImageNotAvailable}
-        alt='chapter'
-      />
+      <div className='row'>
+        <img
+          className='mb-3 col-10 col-sm-6 col-lg-5'
+          src={episode?.image ? episode?.image.medium : ImageNotAvailable}
+          alt='chapter'
+        />
+      </div>
       <p>{striptags(episode?.summary)}</p>
       <div className='card col-12 p-2'>
         <h3>Episode Info</h3>
